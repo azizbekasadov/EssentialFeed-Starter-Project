@@ -8,8 +8,16 @@
 import XCTest
 import Foundation
 
-final class HTTPClient {
+protocol HTTPClient {
+    func get(from url: URL)
+}
+
+final class HTTPClientSpy: HTTPClient {
     var requestedURL: URL?
+    
+    func get(from url: URL) {
+        requestedURL = url
+    }
 }
 
 final class RemoteFeedLoader {
